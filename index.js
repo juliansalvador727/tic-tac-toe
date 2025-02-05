@@ -4,7 +4,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const resetButton = document.querySelector("#reset");
   const announcer = document.querySelector(".announcer");
 
-  let board = ["", "", "", "", "", "", "", "", ""];
+  let board = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
   let currentPlayer = "X";
   let isGameActive = true;
 
@@ -14,25 +14,46 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /*
       Indexes within the board
-      [0] [1] [2]
-      [3] [4] [5]
-      [6] [7] [8]
+      [0] [1] [2] [3]
+      [4] [5] [6] [7]
+      [8] [9] [10] [11]
+      [12] [13] [14] [15]
   */
 
   const winningConditions = [
+    // traditional horizontal winning moves - 8
     [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
+    [1, 2, 3],
+    [4, 5, 6],
+    [5, 6, 7],
+    [8, 9, 10],
+    [9, 10, 11],
+    [12, 13, 14],
+    [13, 14, 15],
+    // traditional vertical winning moves - 8
     [0, 4, 8],
-    [2, 4, 6],
+    [1, 5, 9],
+    [2, 6, 10],
+    [3, 7, 11],
+    [4, 8, 12],
+    [5, 9, 13],
+    [6, 10, 14],
+    [7, 11, 15],
+    // traditional 45 degree winning moves - 4
+    [4, 9, 14],
+    [0, 5, 10],
+    [5, 10, 15],
+    [1, 6, 11],
+    // traditional 135 degree winning moves - 4
+    [7, 10, 13],
+    [3, 6, 9],
+    [6, 9, 12],
+    [2, 5, 8],
   ];
 
   function handleResultValidation() {
     let roundWon = false;
-    for (let i = 0; i <= 7; i++) {
+    for (let i = 0; i <= 23; i++) {
       const winCondition = winningConditions[i];
       const a = board[winCondition[0]];
       const b = board[winCondition[1]];
@@ -99,7 +120,7 @@ window.addEventListener("DOMContentLoaded", () => {
   };
 
   const resetBoard = () => {
-    board = ["", "", "", "", "", "", "", "", ""];
+    board = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
     isGameActive = true;
     announcer.classList.add("hide");
 
